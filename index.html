@@ -25,6 +25,57 @@
 <body>
 
 <div id="app">
+  <!-- Ghost Buddy hängt kopfüber aus der Dynamic Island -->
+  <div class="island-ghost" id="island-ghost">
+    <div class="island-ghost-inner">
+      <svg width="84" height="52" viewBox="0 0 84 52">
+        <!-- Ghost-Körper (kopfüber gerendert, wird per CSS gedreht) -->
+        <defs>
+          <linearGradient id="ig" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#F9B189"/>
+            <stop offset="100%" stop-color="#E4665C"/>
+          </linearGradient>
+          <linearGradient id="igs" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="rgba(255,255,255,0.2)"/>
+            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+          </linearGradient>
+        </defs>
+        <!-- Körper -->
+        <path d="M16 8 Q16 -8 42 -8 Q68 -8 68 8 L68 36 Q60 28 54 36 Q48 44 42 36 Q36 28 30 36 Q24 44 16 36Z" fill="url(#ig)"/>
+        <path d="M16 8 Q16 -8 42 -8 Q68 -8 68 8 L68 36 Q60 28 54 36 Q48 44 42 36 Q36 28 30 36 Q24 44 16 36Z" fill="url(#igs)"/>
+        <!-- Augen (große, lustige Augen) -->
+        <ellipse cx="34" cy="14" rx="5" ry="6" fill="#003041">
+          <animate attributeName="ry" values="6;1;6;6;6;6;6" dur="4s" repeatCount="indefinite"/>
+        </ellipse>
+        <ellipse cx="50" cy="14" rx="5" ry="6" fill="#003041">
+          <animate attributeName="ry" values="6;1;6;6;6;6;6" dur="4s" repeatCount="indefinite"/>
+        </ellipse>
+        <!-- Augen-Glanz -->
+        <circle cx="35.5" cy="11.5" r="2.2" fill="white" opacity="0.9"/>
+        <circle cx="51.5" cy="11.5" r="2.2" fill="white" opacity="0.9"/>
+        <!-- Wangen -->
+        <ellipse cx="25" cy="20" rx="5" ry="3" fill="#E4665C" opacity="0.3"/>
+        <ellipse cx="59" cy="20" rx="5" ry="3" fill="#E4665C" opacity="0.3"/>
+        <!-- Mund - wechselt zwischen Grimassen -->
+        <path d="M36 24 Q42 30 48 24" fill="none" stroke="#003041" stroke-width="2.5" stroke-linecap="round">
+          <animate attributeName="d"
+            values="M36 24 Q42 30 48 24;
+                    M36 24 Q42 24 48 24;
+                    M34 22 Q42 28 50 22;
+                    M38 24 Q42 20 46 24;
+                    M35 23 Q42 32 49 23;
+                    M36 24 Q42 30 48 24"
+            dur="6s" repeatCount="indefinite"/>
+        </path>
+        <!-- Zunge (erscheint bei manchen Grimassen) -->
+        <ellipse cx="42" cy="28" rx="3" ry="2" fill="#E4665C" opacity="0.7">
+          <animate attributeName="opacity" values="0;0;0;0.7;0;0;0" dur="6s" repeatCount="indefinite"/>
+          <animate attributeName="ry" values="0;0;0;3;0;0;0" dur="6s" repeatCount="indefinite"/>
+        </ellipse>
+      </svg>
+    </div>
+  </div>
+
   <div class="screen">
     <div class="page active" id="home"></div>
     <div class="page" id="page-log">
