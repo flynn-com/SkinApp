@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no, maximum-scale=1">
+  <!-- PWA iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="SkinTracker">
+  <meta name="theme-color" content="#0A1628">
+  <meta name="description" content="Tracke deine Haut und verstehe was sie beeinflusst">
+  <title>SkinTracker</title>
+  <!-- Icons -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" sizes="180x180" href="icon-180.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <!-- Splash Screens iOS -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Prevent zoom on input focus (iOS) -->
+  <style>input,select,textarea{font-size:16px!important;}</style>
+</head>
+<body>
+
+<div id="app">
+  <div class="screen">
+    <div class="page active" id="home"></div>
+    <div class="page" id="page-log">
+      <div style="padding-top:12px">
+        <div class="progress"><div class="progress-fill" id="log-progress" style="width:11%"></div></div>
+        <div class="step-label" id="log-step-label">Schritt 1 von 9</div>
+      </div>
+      <div id="log"></div>
+    </div>
+    <div class="page" id="insights"></div>
+    <div class="page" id="profile"></div>
+  </div>
+
+  <div class="nav-btns" id="log-nav" style="display:none">
+    <button class="btn btn-muted" id="btn-back" onclick="prevStep()" style="display:none">← Zurück</button>
+    <button class="btn btn-accent" id="btn-next" onclick="nextStep()">Weiter →</button>
+  </div>
+
+  <div class="tab-bar">
+    <div class="tab active" onclick="switchTab(0)">
+      <svg viewBox="0 0 24 24"><path d="M3 12l9-9 9 9"/><path d="M5 10v10a1 1 0 001 1h3v-6h6v6h3a1 1 0 001-1V10"/></svg>
+      <span>Home</span>
+    </div>
+    <div class="tab" onclick="switchTab(1)">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8M8 12h8"/></svg>
+      <span>Loggen</span>
+    </div>
+    <div class="tab" onclick="switchTab(2)">
+      <svg viewBox="0 0 24 24"><path d="M3 20h18"/><path d="M3 17l4-7 4 4 4-8 4 6"/></svg>
+      <span>Insights</span>
+    </div>
+    <div class="tab" onclick="switchTab(3)">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/></svg>
+      <span>Profil</span>
+    </div>
+  </div>
+
+  <div class="celebration" id="celebration">
+    <div class="cele-card">
+      <div id="cele-char"></div>
+      <div style="font-size:22px;font-weight:800;margin:8px 0 16px">Gespeichert!</div>
+      <div style="display:flex;gap:32px;justify-content:center">
+        <div><div style="font-size:24px">🔥</div><b id="cele-streak">1</b><br><span class="caption">Streak</span></div>
+        <div><div style="font-size:24px">😊</div><b id="cele-score">10/10</b><br><span class="caption">Haut-Score</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="confetti-container" id="confetti"></div>
+</div>
+
+<script src="data.js"></script>
+<script src="correlation.js"></script>
+<script src="app.js"></script>
+<script>
+  // Service Worker registrieren
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js').catch(() => {});
+  }
+</script>
+</body>
+</html>

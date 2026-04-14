@@ -1,0 +1,15 @@
+{
+  "name": "SkinTracker",
+  "short_name": "SkinTracker",
+  "description": "Tracke deine Haut und verstehe was sie beeinflusst",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#0A1628",
+  "theme_color": "#0A1628",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
