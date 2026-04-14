@@ -92,7 +92,30 @@ document.addEventListener('DOMContentLoaded', () => {
   renderHome();
   renderInsights();
   renderProfile();
+  startIslandGhost();
 });
+
+// ==================== ISLAND GHOST (zufällig auftauchen) ====================
+
+function startIslandGhost() {
+  const el = document.getElementById('island-ghost');
+  if (!el) return;
+
+  function showGhost() {
+    el.classList.remove('peek');
+    // Force reflow to restart animation
+    void el.offsetWidth;
+    el.classList.add('peek');
+    // Nach Animation-Ende (4s) Klasse entfernen
+    setTimeout(() => { el.classList.remove('peek'); }, 4200);
+    // Nächstes Auftauchen: zufällig zwischen 15-45 Sekunden
+    const next = 15000 + Math.random() * 30000;
+    setTimeout(showGhost, next);
+  }
+
+  // Erstes Auftauchen nach 3-6 Sekunden
+  setTimeout(showGhost, 3000 + Math.random() * 3000);
+}
 
 // ==================== TAB NAVIGATION ====================
 

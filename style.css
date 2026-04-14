@@ -535,27 +535,32 @@ input[type=range]::-webkit-slider-thumb {
 
 .island-ghost {
   position: fixed;
-  /* Sitzt direkt unter der Dynamic Island */
-  top: calc(var(--safe-t, 0px) - 10px);
+  top: 0;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(-100%);
   z-index: 90;
   pointer-events: none;
   filter: drop-shadow(0 4px 8px rgba(0,0,0,0.4));
+  opacity: 0;
+  transition: none;
 }
 
-.island-ghost-svg {
-  display: block;
-  animation: islandPeek 4s ease-in-out infinite;
+.island-ghost.peek {
+  animation: ghostPeek 4s ease-in-out forwards;
 }
 
-@keyframes islandPeek {
-  0%, 100% { transform: translateY(0) rotate(0); }
-  20% { transform: translateY(4px) rotate(0); }
-  40% { transform: translateY(0) rotate(0); }
-  55% { transform: translateY(3px) rotate(-4deg); }
-  70% { transform: translateY(3px) rotate(4deg); }
-  85% { transform: translateY(0) rotate(0); }
+@keyframes ghostPeek {
+  0%   { transform: translateX(-50%) translateY(-100%); opacity: 0; }
+  8%   { transform: translateX(-50%) translateY(0px); opacity: 1; }
+  15%  { transform: translateX(-50%) translateY(2px) rotate(0deg); }
+  25%  { transform: translateX(-50%) translateY(4px) rotate(-4deg); }
+  35%  { transform: translateX(-50%) translateY(4px) rotate(4deg); }
+  45%  { transform: translateX(-50%) translateY(2px) rotate(0deg); }
+  55%  { transform: translateX(-50%) translateY(4px) rotate(3deg); }
+  65%  { transform: translateX(-50%) translateY(2px) rotate(-2deg); }
+  75%  { transform: translateX(-50%) translateY(0px) rotate(0deg); }
+  85%  { transform: translateX(-50%) translateY(-2px); opacity: 1; }
+  100% { transform: translateX(-50%) translateY(-100%); opacity: 0; }
 }
 
 /* ==================== ANIMATIONS ==================== */
