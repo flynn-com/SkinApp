@@ -25,55 +25,55 @@
 <body>
 
 <div id="app">
-  <!-- Ghost Buddy hängt kopfüber aus der Dynamic Island -->
+  <!-- Ghost Buddy hängt kopfüber unter der Dynamic Island -->
   <div class="island-ghost" id="island-ghost">
-    <div class="island-ghost-inner">
-      <svg width="84" height="52" viewBox="0 0 84 52">
-        <!-- Ghost-Körper (kopfüber gerendert, wird per CSS gedreht) -->
-        <defs>
-          <linearGradient id="ig" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="#F9B189"/>
-            <stop offset="100%" stop-color="#E4665C"/>
-          </linearGradient>
-          <linearGradient id="igs" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stop-color="rgba(255,255,255,0.2)"/>
-            <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
-          </linearGradient>
-        </defs>
-        <!-- Körper -->
-        <path d="M16 8 Q16 -8 42 -8 Q68 -8 68 8 L68 36 Q60 28 54 36 Q48 44 42 36 Q36 28 30 36 Q24 44 16 36Z" fill="url(#ig)"/>
-        <path d="M16 8 Q16 -8 42 -8 Q68 -8 68 8 L68 36 Q60 28 54 36 Q48 44 42 36 Q36 28 30 36 Q24 44 16 36Z" fill="url(#igs)"/>
-        <!-- Augen (große, lustige Augen) -->
-        <ellipse cx="34" cy="14" rx="5" ry="6" fill="#003041">
-          <animate attributeName="ry" values="6;1;6;6;6;6;6" dur="4s" repeatCount="indefinite"/>
-        </ellipse>
-        <ellipse cx="50" cy="14" rx="5" ry="6" fill="#003041">
-          <animate attributeName="ry" values="6;1;6;6;6;6;6" dur="4s" repeatCount="indefinite"/>
-        </ellipse>
-        <!-- Augen-Glanz -->
-        <circle cx="35.5" cy="11.5" r="2.2" fill="white" opacity="0.9"/>
-        <circle cx="51.5" cy="11.5" r="2.2" fill="white" opacity="0.9"/>
-        <!-- Wangen -->
-        <ellipse cx="25" cy="20" rx="5" ry="3" fill="#E4665C" opacity="0.3"/>
-        <ellipse cx="59" cy="20" rx="5" ry="3" fill="#E4665C" opacity="0.3"/>
-        <!-- Mund - wechselt zwischen Grimassen -->
-        <path d="M36 24 Q42 30 48 24" fill="none" stroke="#003041" stroke-width="2.5" stroke-linecap="round">
-          <animate attributeName="d"
-            values="M36 24 Q42 30 48 24;
-                    M36 24 Q42 24 48 24;
-                    M34 22 Q42 28 50 22;
-                    M38 24 Q42 20 46 24;
-                    M35 23 Q42 32 49 23;
-                    M36 24 Q42 30 48 24"
-            dur="6s" repeatCount="indefinite"/>
-        </path>
-        <!-- Zunge (erscheint bei manchen Grimassen) -->
-        <ellipse cx="42" cy="28" rx="3" ry="2" fill="#E4665C" opacity="0.7">
-          <animate attributeName="opacity" values="0;0;0;0.7;0;0;0" dur="6s" repeatCount="indefinite"/>
-          <animate attributeName="ry" values="0;0;0;3;0;0;0" dur="6s" repeatCount="indefinite"/>
-        </ellipse>
-      </svg>
-    </div>
+    <svg width="56" height="48" viewBox="0 0 56 48" class="island-ghost-svg">
+      <defs>
+        <linearGradient id="ig" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#E4665C"/>
+          <stop offset="100%" stop-color="#F9B189"/>
+        </linearGradient>
+      </defs>
+      <!-- Körper: oben gerade (verschwindet hinter Island), unten abgerundet -->
+      <rect x="4" y="-8" width="48" height="52" rx="14" fill="url(#ig)"/>
+      <!-- Shine -->
+      <rect x="4" y="-8" width="48" height="30" rx="14" fill="white" opacity="0.12"/>
+
+      <!-- KOPFÜBER: Mund oben, Augen unten -->
+
+      <!-- Mund (oben, umgedreht = lächelt nach unten) -->
+      <path fill="none" stroke="#003041" stroke-width="2.5" stroke-linecap="round">
+        <animate attributeName="d"
+          values="M21 12 Q28 6 35 12;
+                  M22 10 Q28 10 34 10;
+                  M20 12 Q28 4 36 12;
+                  M23 10 Q28 14 33 10;
+                  M20 11 Q28 3 36 11;
+                  M21 12 Q28 6 35 12"
+          dur="5s" repeatCount="indefinite"/>
+      </path>
+
+      <!-- Zunge (fällt nach oben raus bei Grimasse) -->
+      <ellipse cx="28" cy="7" rx="3" ry="0" fill="#E4665C">
+        <animate attributeName="ry" values="0;0;0;0;3;0;0" dur="5s" repeatCount="indefinite"/>
+        <animate attributeName="opacity" values="0;0;0;0;0.8;0;0" dur="5s" repeatCount="indefinite"/>
+      </ellipse>
+
+      <!-- Wangen -->
+      <ellipse cx="12" cy="22" rx="4" ry="2.5" fill="#CC7793" opacity="0.35"/>
+      <ellipse cx="44" cy="22" rx="4" ry="2.5" fill="#CC7793" opacity="0.35"/>
+
+      <!-- Augen (unten, rund) -->
+      <ellipse cx="21" cy="28" rx="4.5" ry="5" fill="#003041">
+        <animate attributeName="ry" values="5;1;5;5;5;5;5;5" dur="3.5s" repeatCount="indefinite"/>
+      </ellipse>
+      <ellipse cx="35" cy="28" rx="4.5" ry="5" fill="#003041">
+        <animate attributeName="ry" values="5;1;5;5;5;5;5;5" dur="3.5s" repeatCount="indefinite"/>
+      </ellipse>
+      <!-- Glanz (unten im Auge weil kopfüber) -->
+      <circle cx="22.5" cy="30.5" r="2" fill="white" opacity="0.85"/>
+      <circle cx="36.5" cy="30.5" r="2" fill="white" opacity="0.85"/>
+    </svg>
   </div>
 
   <div class="screen">
